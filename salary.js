@@ -1,6 +1,6 @@
-
-const benefits = parseFloat(document.getElementById("benefits").value);
-const basicSalary = parseFloat(document.getElementById("basicSalary").value);
+   
+//const benefits = parseFloat(document.getElementById("benefits").value);
+//const basicSalary = parseFloat(document.getElementById("basicSalary").value);
     
     function calculatePayee(grossSalary){
         if(grossSalary <= 24000){
@@ -81,6 +81,8 @@ function calculateNSSF(){
     }
 }
 function calcNetSalary(basicSalary, benefits) {
+const benefits = parseFloat(document.getElementById("benefits"));
+const basicSalary = parseFloat(document.getElementById("basicSalary"));
     const grossSalary = basicSalary + benefits;
     const payee = calculatePayee(grossSalary);
     const nhif = calculateNHIF(grossSalary);
@@ -89,12 +91,12 @@ function calcNetSalary(basicSalary, benefits) {
   
     return { grossSalary, payee, nhif, nssf, netSalary,};
   }
-  function updateResult(netSalary) {
-  const resultDiv = document.getElementById("result");
-  resultDiv.textContent = `Net Salary: ${netSalary.toFixed(2)}`;
-  }
+  //function updateResult(netSalary) {
+ // const resultDiv = document.getElementById("result");
+//  resultDiv.textContent = `Net Salary: ${netSalary.toFixed(2)}`;
+  //}
   const salaryButton = document.getElementById("#salaryButton");
   salaryButton.addEventListener("click", calcNetSalary);
 
-  const result = calcNetSalary(basicSalary, benefits);
-  updateResult(result.netSalary);
+ // const result = calcNetSalary(basicSalary, benefits);
+ // updateResult(result.netSalary);
