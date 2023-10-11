@@ -1,11 +1,17 @@
-   
-//const benefits = parseFloat(document.getElementById("benefits").value);
-//const basicSalary = parseFloat(document.getElementById("basicSalary").value);
-    
-    function calculatePayee(grossSalary){
+
+function calcNetSalary() {
+    const inputs =
+    prompt("Please enter your basic salary and benefits separated by a space");
+    const inputParts = inputs.split("");
+    if (inputParts.length === 2){
+    const basicSalary = parseFloat(inputs[0]);
+    const benefits = parseFloat(inputs[1]);
+    const grossSalary = benefits + basicSalary;
+    function calculatePayee(){
         if(grossSalary <= 24000){
             return grossSalary * 0.1;
-        }
+      }
+
         else if(grossSalary >= 24001 && grossSalary <= 32333){
             return grossSalary * 0.25;
         }
@@ -19,7 +25,7 @@
             return grossSalary * 0.35;
         }
 }
-function calculateNHIF(grossSalary){
+function calculateNHIF(){
     if(grossSalary <= 5999){
         return 150;
     }
@@ -78,25 +84,23 @@ function calculateNSSF(){
     }
     else{
         return 1080;
-    }
-}
-function calcNetSalary(basicSalary, benefits) {
-const benefits = parseFloat(document.getElementById("benefits"));
-const basicSalary = parseFloat(document.getElementById("basicSalary"));
-    const grossSalary = basicSalary + benefits;
+    }}
     const payee = calculatePayee(grossSalary);
     const nhif = calculateNHIF(grossSalary);
     const nssf = calculateNSSF(grossSalary);
     const netSalary = grossSalary - payee - nhif - nssf;
   
     return { grossSalary, payee, nhif, nssf, netSalary,};
-  }
-  //function updateResult(netSalary) {
- // const resultDiv = document.getElementById("result");
-//  resultDiv.textContent = `Net Salary: ${netSalary.toFixed(2)}`;
-  //}
-  const salaryButton = document.getElementById("#salaryButton");
-  salaryButton.addEventListener("click", calcNetSalary);
+  } else {
+    alert("Invalid input format. Please enter your basic salary and benefits separated by a space.");
+}
+}
 
- // const result = calcNetSalary(basicSalary, benefits);
- // updateResult(result.netSalary);
+ 
+  const salaryButton = document.querySelector("#salaryButton");
+  salaryButton.addEventListener("click", function () {
+    const result = calcNetSalary();
+    if (result) {
+        console.log(result);
+    }
+});
